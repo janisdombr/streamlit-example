@@ -1,4 +1,4 @@
-geopy
+geopy==2.3.0
 scipy
 pandas
 streamlit
