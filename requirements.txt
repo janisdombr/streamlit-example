@@ -1,3 +1,4 @@
-altair
+geopy
+scipy
 pandas
 streamlit
