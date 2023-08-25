@@ -1,5 +1,4 @@
 from collections import namedtuple
-import altair as alt
 import math
 import pandas as pd
 import streamlit as st
@@ -59,15 +58,17 @@ st.write('The longitude is:', lon)
 # function to filter dataframe by distance from point (lat, lon) 
 # using distance.euclidean function and return N nearest points
 # filtered by object_type column before calculating distance
+
 def get_nearest_points(df, lat, lon, N, filter_by_object_type=object_type):
     # filter dataframe by object_type
     df = df[df['object_type'] == filter_by_object_type]
-    # create new column with distance from point
-    df['distance'] = df.apply(lambda row: distance.euclidean((row['latitude'], row['longitude']), (lat, lon)), axis=1)
-    # sort dataframe by distance
+    # calculate distance from point (lat, lon) to each point in dataframe
+    df.loc[:, 'distance'] = df.apply(lambda row: distance.euclidean((lat, lon), (row['latitude'], row['longitude'])), axis=1)
+    # sort dataframe by distance column
     df = df.sort_values(by=['distance'])
     # return N nearest points
     return df.head(N)
+
 
 # get 10 nearest points from dataframe and save it to new dataframe for st.map
 # filtered by object_type column

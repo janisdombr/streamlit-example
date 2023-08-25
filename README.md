@@ -1,6 +1,3 @@
-# Welcome to Streamlit!
+# Streamlit test for filtering real estate object and calculating average price
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+see /streamlit_app.py file for details
