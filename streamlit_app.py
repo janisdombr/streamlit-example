@@ -2,6 +2,7 @@ from collections import namedtuple
 import math
 import pandas as pd
 import streamlit as st
+st.write(st.__version__)
 from geopy import geocoders
 from geopy.exc import GeocoderTimedOut
 from geopy.geocoders import Nominatim
