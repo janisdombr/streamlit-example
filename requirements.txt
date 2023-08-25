@@ -1,5 +1,5 @@
 geopy==2.3.0
+streamlit==1.22.0
 scipy
 pandas
-streamlit
 collections
