@@ -1,3 +1,5 @@
-# Streamlit test for filtering real estate object and calculating average price
+# Streamlit test 
+## for filtering real estate object and calculating average price
 
-see /streamlit_app.py file for details
+
+see [/streamlit_app.py](/streamlit_app.py) file for details
