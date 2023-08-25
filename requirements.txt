@@ -2,3 +2,4 @@ geopy
 scipy
 pandas
 streamlit
+collections
