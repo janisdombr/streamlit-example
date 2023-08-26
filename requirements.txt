@@ -3,3 +3,5 @@ streamlit
 scipy
 pandas
 numpy
+folium
+streamlit_folium
