@@ -67,7 +67,7 @@ def get_random_forest_model(df):
     # #st.write("MAPE: {0:7.2f} минимальная, выбираем эту модель".format(error))
     return model, mape
 
-st.header("Calculate your property price and payback with nearest points on map as examples")
+st.header("Calculate your property price using ML or mean price of nearest objects by address")
 
 col1, col2 = st.columns([1, 2])
 
