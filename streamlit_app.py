@@ -12,6 +12,8 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_percentage_error
+import folium.plugins as plugins
+
 
 # Function for get geo coordinates from address
 def get_location_by_address(address):
@@ -83,6 +85,12 @@ map_style = st.selectbox(
     'Map style:',
     ('OpenStreetMap', 'Stamen Terrain', 'Stamen Toner', 'Stamen Watercolor', 'CartoDB positron', 'CartoDB dark_matter'),
     index=4)
+use_hitmap = st.checkbox('Use heat map', value=True)
+if use_hitmap:
+    # radius of hitmap default value = 25 from 1 to 150
+    radius = st.slider('Radius', 1, 150, 25, 1)
+    # blur of hitmap default value = 15 from 1 to 100
+    blur = st.slider('Blur', 1, 100, 25, 1)
 
 with col1:
     # Show input for address
@@ -137,6 +145,20 @@ with col2:
     # st.map(df_for_map, zoom=11, latitude=lat, longitude=lon)
     # use folium library to display map with markers containing html content
     m = folium.Map(location=[lat, lon], zoom_start=13, tiles=map_style)
+
+    if use_hitmap:
+        # filter dataframe by rooms and
+        # add weight column to dataframe for HeatMap plugin based on price column
+        # normalize price column to range (0, 1) useing min-max normalization
+        df_same_rooms = sell_data[sell_data['rooms'] == rooms]
+        df_same_rooms['weight'] = (df_same_rooms['price'] - df_same_rooms['price'].min()) / (df_same_rooms['price'].max() - df_same_rooms['price'].min())
+        # add HeatMap plugin to map
+        hm = plugins.HeatMap(
+            data=df_same_rooms[['latitude', 'longitude', 'weight']].to_numpy().tolist(),
+            radius=radius,
+            blur=blur
+            )
+        hm.add_to(m)
     # iterate over dataframe rows and add marker with html content
     folium.Marker(
             [lat, lon],
