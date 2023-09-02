@@ -81,16 +81,21 @@ sell_data = pd.read_csv('data/sell_test.csv')
 # cloumn names: img_url, house_type, price, address, ad_url, square, object_type, latitude, longitude
 # rent_data = pd.read_csv('data/rent_test.csv')
 
-map_style = st.selectbox(
-    'Map style:',
-    ('OpenStreetMap', 'Stamen Terrain', 'Stamen Toner', 'Stamen Watercolor', 'CartoDB positron', 'CartoDB dark_matter'),
-    index=4)
-use_hitmap = st.checkbox('Use heat map', value=True)
+# map_style = st.selectbox(
+#     'Map style:',
+#     ('OpenStreetMap', 'Stamen Terrain', 'Stamen Toner', 'Stamen Watercolor', 'CartoDB positron', 'CartoDB dark_matter'),
+#     index=4)
+map_style = 'CartoDB positron'
+
+# use_hitmap = st.checkbox('Use heat map', value=True)
+use_hitmap = True
 if use_hitmap:
     # radius of hitmap default value = 25 from 1 to 150
-    radius = st.slider('Radius', 1, 150, 25, 1)
+    # radius = st.slider('Radius', 1, 150, 25, 1)
+    radius = 40
     # blur of hitmap default value = 15 from 1 to 100
-    blur = st.slider('Blur', 1, 100, 25, 1)
+    # blur = st.slider('Blur', 1, 100, 25, 1)
+    blur = 50
 
 with col1:
     # Show input for address
