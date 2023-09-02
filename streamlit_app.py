@@ -79,6 +79,11 @@ sell_data = pd.read_csv('data/sell_test.csv')
 # cloumn names: img_url, house_type, price, address, ad_url, square, object_type, latitude, longitude
 # rent_data = pd.read_csv('data/rent_test.csv')
 
+map_style = st.selectbox(
+    'Map style:',
+    ('OpenStreetMap', 'Stamen Terrain', 'Stamen Toner', 'Stamen Watercolor', 'CartoDB positron', 'CartoDB dark_matter'),
+    index=4)
+
 with col1:
     # Show input for address
     address = st.text_input(
@@ -131,7 +136,7 @@ with col2:
     # display map with markers based on the dataframe
     # st.map(df_for_map, zoom=11, latitude=lat, longitude=lon)
     # use folium library to display map with markers containing html content
-    m = folium.Map(location=[lat, lon], zoom_start=13)
+    m = folium.Map(location=[lat, lon], zoom_start=13, tiles=map_style)
     # iterate over dataframe rows and add marker with html content
     folium.Marker(
             [lat, lon],
